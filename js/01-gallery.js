@@ -27,7 +27,7 @@ galleryItems.forEach((galleryItem) => {
 });
 imageGallery.insertAdjacentHTML("afterbegin", markup);
 
-// Event listener on div.gallery
+// Event listener on div.gallery and modal window of basicLightbox
 
 const handleUrlLargeImage = (event) => {
   event.preventDefault();
@@ -35,9 +35,17 @@ const handleUrlLargeImage = (event) => {
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  console.log(event.target.dataset.source);
+  // console.log(event.target.dataset.source);
+  
+  const instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}" width="1140" height="744"/>
+`);
+  instance.show();
 };
 
 imageGallery.addEventListener("click", handleUrlLargeImage);
+
+
+
 
 // console.log(galleryItems);
