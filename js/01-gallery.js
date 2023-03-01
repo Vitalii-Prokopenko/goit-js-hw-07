@@ -26,13 +26,7 @@ galleryItems.forEach((galleryItem) => {
   console.log(galleryLink);
   console.log(galleryImage);
 
-  markup += `<${galleryElement.localName}><${galleryLink.localName} href="${
-    galleryLink.href
-  }"><${galleryImage.localName} src="${galleryImage.src}" alt="${
-    galleryImage.alt
-  }" data-source="${galleryImage.dataset.source}"/></${
-    galleryLink.localName
-  }></${galleryElement.localName}>`;
+  markup += `<${galleryElement.localName} class="${galleryElement.className}"><${galleryLink.localName} class="${galleryLink.className}" href="${galleryLink.href}"><${galleryImage.localName} class="${galleryImage.className}" src="${galleryImage.src}" alt="${galleryImage.alt}" data-source="${galleryImage.dataset.source}"/></${galleryLink.localName}></${galleryElement.localName}>`;
 });
 imageGallery.insertAdjacentHTML("afterbegin", markup);
 
