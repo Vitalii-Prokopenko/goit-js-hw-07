@@ -1,14 +1,11 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
+// Gallery markup
 const imageGallery = document.querySelector(".gallery");
-// imageGallery.classList.add("list");
 let markup = "";
 
 galleryItems.forEach((galleryItem) => {
-  //   image.width = 1260;
-  //   image.height = 750;
-
   let galleryElement = document.createElement("div");
   let galleryLink = document.createElement("a");
   let galleryImage = document.createElement("img");
@@ -22,12 +19,25 @@ galleryItems.forEach((galleryItem) => {
   galleryImage.setAttribute("data-source", galleryItem.original);
   galleryImage.setAttribute("alt", galleryItem.description);
 
-  console.log(galleryElement);
+  // console.log(galleryElement);
   console.log(galleryLink);
-  console.log(galleryImage);
+  // console.log(galleryImage);
 
   markup += `<${galleryElement.localName} class="${galleryElement.className}"><${galleryLink.localName} class="${galleryLink.className}" href="${galleryLink.href}"><${galleryImage.localName} class="${galleryImage.className}" src="${galleryImage.src}" alt="${galleryImage.alt}" data-source="${galleryImage.dataset.source}"/></${galleryLink.localName}></${galleryElement.localName}>`;
 });
 imageGallery.insertAdjacentHTML("afterbegin", markup);
+
+// Event listener on div.gallery
+
+const handleUrlLargeImage = (event) => {
+  event.preventDefault();
+
+  if (event.target.nodeName !== "IMG") {
+    return;
+  }
+  console.log(event.target.dataset.source);
+};
+
+imageGallery.addEventListener("click", handleUrlLargeImage);
 
 // console.log(galleryItems);
