@@ -19,33 +19,36 @@ galleryItems.forEach((galleryItem) => {
   galleryImage.setAttribute("data-source", galleryItem.original);
   galleryImage.setAttribute("alt", galleryItem.description);
 
-  // console.log(galleryElement);
-  console.log(galleryLink);
-  // console.log(galleryImage);
-
   markup += `<${galleryElement.localName} class="${galleryElement.className}"><${galleryLink.localName} class="${galleryLink.className}" href="${galleryLink.href}"><${galleryImage.localName} class="${galleryImage.className}" src="${galleryImage.src}" alt="${galleryImage.alt}" data-source="${galleryImage.dataset.source}"/></${galleryLink.localName}></${galleryElement.localName}>`;
 });
 imageGallery.insertAdjacentHTML("afterbegin", markup);
 
 // Event listener on div.gallery and modal window of basicLightbox
 
-const handleUrlLargeImage = (event) => {
+const handleBasicLightBox = (event) => {
   event.preventDefault();
 
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  // console.log(event.target.dataset.source);
-  
+
   const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}" width="1140" height="744"/>
 `);
   instance.show();
+
+  // Modal window is closed on Esc key down
+
+  const handleEscapeClose = (event) => {
+    if (event.key !== "Escape") {
+      return;
+    }
+    instance.close();
+  };
+
+  document.addEventListener("keydown", handleEscapeClose);
 };
 
-imageGallery.addEventListener("click", handleUrlLargeImage);
-
-
-
+imageGallery.addEventListener("click", handleBasicLightBox);
 
 // console.log(galleryItems);
