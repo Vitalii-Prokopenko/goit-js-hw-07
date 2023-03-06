@@ -22,6 +22,13 @@ galleryItems.forEach((galleryItem) => {
 
 imageGallery.insertAdjacentHTML("afterbegin", markup);
 
+// Creation of SimpleLightbox object
+
+const mySimpleLightBox = new SimpleLightbox(".gallery__item", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
+
 // Event listener on div.gallery and modal window of SimpleLightbox
 
 const handleSimpleLightBox = (event) => {
@@ -29,12 +36,7 @@ const handleSimpleLightBox = (event) => {
 
   if (event.target.nodeName !== "IMG") {
     return;
-  }
-
-  const mySimpleLightBox = new SimpleLightbox(".gallery__item", {
-    captionsData: "alt",
-    captionDelay: 250,
-  });
+  }  
 };
 
 imageGallery.addEventListener("click", handleSimpleLightBox);

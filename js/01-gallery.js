@@ -47,6 +47,7 @@ const handleBasicLightBox = (event) => {
   };
 
   document.addEventListener("keydown", handleEscapeClose);
+  document.removeEventListener("keyup", handleEscapeClose);
 };
 
 imageGallery.addEventListener("click", handleBasicLightBox);
